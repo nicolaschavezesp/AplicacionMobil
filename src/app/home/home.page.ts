@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,7 +15,7 @@ export class HomePage {
     this.showLogo = !this.showLogo;
   }
 
-  usuario: string = "usuario";
+  usuario: String ='';
   clases: any[] = [
     {
       nombre: "Clase 1",
