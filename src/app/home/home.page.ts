@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -8,14 +10,24 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-
+  usuario: string = '';
+  contrasena: string = '';
   showLogo: boolean = true;
+  
+  constructor(private route: ActivatedRoute, private alertController: AlertController) {
+    this.route.queryParams.subscribe((params) => {
+      if (params['usuario'] && params['contrasena']) {
+        this.usuario = params['usuario'];
+        this.contrasena = params['contrasena'];
+      }
+    });
+  }
 
   toggleLogo() {
     this.showLogo = !this.showLogo;
   }
 
-  usuario: String ='';
+  
   clases: any[] = [
     {
       nombre: "Clase 1",
