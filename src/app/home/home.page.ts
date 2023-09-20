@@ -1,20 +1,34 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { slideInAnimation } from '../Animations/slide-in.animation';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  animations: [slideInAnimation],
 })
 export class HomePage {
 
-
+  usuario: string = '';
+  contrasena: string = '';
   showLogo: boolean = true;
+  
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParams.subscribe((params) => {
+      if (params['usuario'] && params['contrasena']) {
+        this.usuario = params['usuario'];
+        this.contrasena = params['contrasena'];
+      }
+    });
+  }
 
   toggleLogo() {
     this.showLogo = !this.showLogo;
   }
 
-  usuario: string = "usuario";
+  
   clases: any[] = [
     {
       nombre: "Clase 1",

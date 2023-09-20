@@ -4,26 +4,25 @@ import { Router } from '@angular/router';
 import { slideInAnimation } from '../Animations/slide-in.animation';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-recuperar',
+  templateUrl: './recuperar.page.html',
+  styleUrls: ['./recuperar.page.scss'],
   animations: [slideInAnimation],
 })
-export class LoginPage {
+export class RecuperarPage {
   usuario: string = ''; // Inicializa la propiedad usuario
-  contrasena: string = ''; // Inicializa la propiedad contrasena
+
 
   constructor(private navCtrl: NavController, private router: Router) {}
 
 
-  agregarDatos() {
+  recuperarDatos() {
     // Validar los campos
-    if (this.usuario.length >= 3 && this.usuario.length <= 8 && /^\d{4}$/.test(this.contrasena)) {
+    if (this.usuario.length >= 3 && this.usuario.length <= 8) {
       // Los datos son válidos, pasar a la página Home
-      this.navCtrl.navigateForward('/home', {
+      this.navCtrl.navigateForward('/login', {
         queryParams: {
-          usuario: this.usuario,
-          contrasena: this.contrasena,
+          usuario: this.usuario 
         },
       });
     } else {
@@ -31,9 +30,4 @@ export class LoginPage {
       // Puedes agregar lógica adicional para mostrar mensajes de error personalizados
     }
   }
-  restablecer() {
-    // Aquí especifica la ruta de la página de inicio de sesión (login)
-    this.router.navigate(['/recuperar']);
-  }
 }
-
